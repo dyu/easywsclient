@@ -1,0 +1,40 @@
+
+config("easywsclient_config") {
+  include_dirs = [ "." ]
+}
+
+static_library("easywsclient") {
+  public_configs = [ ":easywsclient_config" ]
+  sources = [
+    "easywsclient.hpp",
+    "easywsclient.cpp",
+  ]
+}
+
+executable("example-client") {
+  sources = [ "example-client.cpp" ]
+  deps = [
+    ":easywsclient",
+  ]
+}
+
+executable("example-client-cpp11") {
+  sources = [ "example-client-cpp11.cpp" ]
+  deps = [
+    ":easywsclient",
+  ]
+}
+
+executable("demo-client") {
+  sources = [ "demo/client.cpp" ]
+  deps = [
+    ":easywsclient",
+  ]
+}
+
+executable("demo-server") {
+  sources = [ "demo/server.cpp" ]
+  deps = [
+    "//gn-deps/uWebSockets:uws",
+  ]
+}

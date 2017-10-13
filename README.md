@@ -25,6 +25,26 @@ implementation file. It can serve as a cruft-free concise reference. You
 are most welcome to use this code as a reference for creating alternative
 implementations that may better suit your needs.
 
+Build via GN
+============
+```sh
+git clone --depth 1 --single-branch -b cpp14 https://github.com/dyu/gn-build.git
+git clone --depth 1 --single-branch -b master https://github.com/dyu/gn-deps.git
+./gn-deps/fetch.sh
+echo 'buildconfig = "//gn-build/config/BUILDCONFIG.gn"' > .gn
+gn gen gn-out --args='gcc_cc="gcc" gcc_cxx="g++" symbol_level=0 is_debug=false is_clang=false is_official_build=true'
+ninja -C gn-out
+```
+
+Run demo
+========
+```sh
+./gn-out/demo-server 3000
+
+# on another terminal
+./gn-out/demo-client 3000
+```
+
 News
 ====
 
@@ -35,8 +55,6 @@ be installed at `/usr/src/gtest` (`apt-get install libgtest-dev` does the
 trick). The test suite uses C++14 (for lambda capture expressions), and thus it
 will not work on older compilers. Note that easywsclient itself still
 restricted to C++98/C++03, and will continue to build with older compilers.
-
-
 
 Usage
 =====
