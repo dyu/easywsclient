@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     h.onMessage([](uWS::WebSocket<uWS::CLIENT> *ws, char *message, size_t length, uWS::OpCode opCode) {
         std::cout << std::string(message, length) << std::endl;
-        exit(0);
+        ws->close();
     });
     
     h.onConnection([msg, msg_len](uWS::WebSocket<uWS::CLIENT> *ws, uWS::HttpRequest req) {
