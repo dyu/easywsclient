@@ -32,6 +32,13 @@ executable("demo-client") {
   ]
 }
 
+executable("demo-uws-client") {
+  sources = [ "demo/uws-client.cpp" ]
+  deps = [
+    "//gn-deps/uWebSockets:uws",
+  ]
+}
+
 executable("demo-server") {
   sources = [ "demo/server.cpp" ]
   deps = [
